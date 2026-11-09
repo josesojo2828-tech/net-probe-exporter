@@ -1,11 +1,21 @@
-# Binaries
+# Binarios
+/bin/
 /net-probe-exporter
 *.exe
 *.test
+*.out
+coverage.html
+*.prof
 
 # Build output
 /dist/
 /build/
+
+# Config local y secretos
+config.yaml
+.env
+.env.*
+!.env.example
 
 # IDE
 .vscode/
@@ -17,12 +27,6 @@
 .DS_Store
 Thumbs.db
 
-# Config
-config.yaml
-
-# Coverage
-coverage.out
-*.prof
-
-# Secrets
-.env
+# Backups
+*.bak
+*.backup
