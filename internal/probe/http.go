@@ -7,18 +7,18 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/josesojo2828/net-probe-exporter/internal/config"
+	"github.com/josesojo2828-tech/net-probe-exporter/internal/config"
 )
 
 // HTTPProbe performs HTTP health checks.
 type HTTPProbe struct {
-	name          string
-	targetName    string
-	url           string
-	method        string
-	expectedCode  int
-	timeout       time.Duration
-	client        *http.Client
+	name         string
+	targetName   string
+	url          string
+	method       string
+	expectedCode int
+	timeout      time.Duration
+	client       *http.Client
 }
 
 // NewHTTPProbe creates a new HTTP probe from configuration.

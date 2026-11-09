@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/josesojo2828/net-probe-exporter/internal/config"
-	"github.com/josesojo2828/net-probe-exporter/internal/probe"
+	"github.com/josesojo2828-tech/net-probe-exporter/internal/config"
+	"github.com/josesojo2828-tech/net-probe-exporter/internal/probe"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/client_golang/prometheus/testutil"

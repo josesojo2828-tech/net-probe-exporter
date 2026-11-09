@@ -7,7 +7,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/josesojo2828/net-probe-exporter/internal/config"
+	"github.com/josesojo2828-tech/net-probe-exporter/internal/config"
 )
 
 // SSLCertProbe performs TLS certificate health checks.

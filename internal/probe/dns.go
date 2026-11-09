@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/josesojo2828/net-probe-exporter/internal/config"
+	"github.com/josesojo2828-tech/net-probe-exporter/internal/config"
 )
 
 // DNSProbe performs DNS resolution health checks.
@@ -118,7 +118,7 @@ func (p *DNSProbe) Probe(ctx context.Context) Result {
 	}
 
 	extra := map[string]string{
-		"resolved":   strings.Join(records, ","),
+		"resolved":    strings.Join(records, ","),
 		"record_type": p.recordType,
 	}
 

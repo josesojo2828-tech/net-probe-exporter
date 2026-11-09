@@ -10,9 +10,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/josesojo2828/net-probe-exporter/internal/config"
-	"github.com/josesojo2828/net-probe-exporter/internal/exporter"
-	"github.com/josesojo2828/net-probe-exporter/internal/probe"
+	"github.com/josesojo2828-tech/net-probe-exporter/internal/config"
+	"github.com/josesojo2828-tech/net-probe-exporter/internal/exporter"
+	"github.com/josesojo2828-tech/net-probe-exporter/internal/probe"
 )
 
 func main() {

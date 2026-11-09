@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/josesojo2828/net-probe-exporter/internal/probe"
+	"github.com/josesojo2828-tech/net-probe-exporter/internal/probe"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
@@ -21,6 +21,13 @@ var (
 	latencyDesc = prometheus.NewDesc(
 		"net_probe_latency_ms",
 		"Latency of the last probe in milliseconds",
+		[]string{"target", "type"},
+		nil,
+	)
+
+	latencyHistogramDesc = prometheus.NewDesc(
+		"net_probe_latency_seconds",
+		"Probe latency observations in seconds",
 		[]string{"target", "type"},
 		nil,
 	)
@@ -61,6 +68,23 @@ var (
 	)
 )
 
+// latencyBuckets are the upper bounds (in seconds) used for latency histograms.
+// They are tuned for network probes: sub-millisecond to ten seconds.
+var latencyBuckets = []float64{0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10}
+
+// histogramBuckets builds cumulative bucket counts for a single observation.
+func histogramBuckets(seconds float64) map[float64]uint64 {
+	buckets := make(map[float64]uint64, len(latencyBuckets))
+	for _, bound := range latencyBuckets {
+		if seconds <= bound {
+			buckets[bound] = 1
+		} else {
+			buckets[bound] = 0
+		}
+	}
+	return buckets
+}
+
 // Exporter implements prometheus.Collector and serves probe metrics.
 type Exporter struct {
 	runner       *probe.Runner
@@ -79,6 +103,7 @@ func New(runner *probe.Runner) *Exporter {
 func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- upDesc
 	ch <- latencyDesc
+	ch <- latencyHistogramDesc
 	ch <- httpStatusCodeDesc
 	ch <- scrapesTotalDesc
 	ch <- sslDaysUntilExpiryDesc
@@ -102,6 +127,12 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 
 		ch <- prometheus.MustNewConstMetric(
 			latencyDesc, prometheus.GaugeValue, r.LatencyMs, r.TargetName, r.TargetType,
+		)
+
+		seconds := r.LatencyMs / 1000
+		ch <- prometheus.MustNewConstHistogram(
+			latencyHistogramDesc, 1, seconds, histogramBuckets(seconds),
+			r.TargetName, r.TargetType,
 		)
 
 		if r.TargetType == "http" && r.StatusCode > 0 {

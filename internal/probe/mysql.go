@@ -8,7 +8,7 @@ import (
 	"time"
 
 	_ "github.com/go-sql-driver/mysql" // MySQL driver
-	"github.com/josesojo2828/net-probe-exporter/internal/config"
+	"github.com/josesojo2828-tech/net-probe-exporter/internal/config"
 )
 
 // MySQLProbe performs MySQL connectivity and optional query health checks.

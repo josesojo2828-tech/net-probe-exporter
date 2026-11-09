@@ -23,7 +23,7 @@ Prometheus exporter customizado para healthchecks HTTP, TCP, SSL, DNS y bases de
 
 ```bash
 # Clonar
-git clone https://github.com/josesojo2828/net-probe-exporter.git
+git clone https://github.com/josesojo2828-tech/net-probe-exporter.git
 cd net-probe-exporter
 
 # Copiar y editar config

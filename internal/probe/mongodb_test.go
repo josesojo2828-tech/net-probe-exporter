@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/josesojo2828/net-probe-exporter/internal/config"
+	"github.com/josesojo2828-tech/net-probe-exporter/internal/config"
 )
 
 func TestMongoDBProbe_Name(t *testing.T) {
@@ -37,9 +37,9 @@ func TestMongoDBProbe_Type(t *testing.T) {
 
 func TestMongoDBProbe_Constructor(t *testing.T) {
 	cfg := config.Probe{
-		Name:     "my-mongo",
-		Type:     "mongodb",
-		Timeout:  10 * time.Second,
+		Name:    "my-mongo",
+		Type:    "mongodb",
+		Timeout: 10 * time.Second,
 		MongoDB: &config.MongoDBProbeConfig{
 			URI:   "mongodb://user:pass@localhost:27017/mydb",
 			Query: `{"ping": 1}`,

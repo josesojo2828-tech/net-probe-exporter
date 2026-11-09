@@ -6,7 +6,7 @@ and passed to sub-agents. Sub-agents do NOT search for this registry themselves.
 ## Project
 - Name: net-probe-exporter
 - Path: /home/jsojo/Documentos/OPEN_SOURCE/net-probe-exporter
-- Stack: Go 1.25 (module github.com/josesojo2828/net-probe-exporter)
+- Stack: Go 1.25 (module github.com/josesojo2828-tech/net-probe-exporter)
 - Default artifact store: engram
 
 ## Skills

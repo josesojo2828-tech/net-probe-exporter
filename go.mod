@@ -1,4 +1,4 @@
-module github.com/josesojo2828/net-probe-exporter
+module github.com/josesojo2828-tech/net-probe-exporter
 
 go 1.25.0
 
